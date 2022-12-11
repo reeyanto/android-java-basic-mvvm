@@ -1,7 +1,6 @@
 package com.reeyanto.androidjavabasicmvvm;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -28,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
             userViewModel.setUser(user);
         });
 
-        userViewModel.getUser().observe(this, user -> {
-            binding.tvResult.setText(user.getUser());
-        });
+        userViewModel.getUser().observe(this, user -> binding.tvResult.setText(user.getUser()));
     }
 }
