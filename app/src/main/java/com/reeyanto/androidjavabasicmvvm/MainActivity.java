@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
         binding.btnButton.setOnClickListener(view -> {
             User user = new User(binding.etUser.getText().toString());
-            binding.tvResult.setText(user.getUser());
+            userViewModel.setUser(user);
         });
 
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        userViewModel.getUser().observe(this, user -> userViewModel.setUser(user));
+        userViewModel.getUser().observe(this, user -> {
+            binding.tvResult.setText(user.getUser());
+        });
     }
 }
